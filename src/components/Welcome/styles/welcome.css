@@ -1,0 +1,41 @@
+.title {
+  text-align: center;
+  font-size: 3rem;
+  margin-top: 30px;
+}
+
+.container-flex {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+.btn {
+  appearance: none;
+  outline: none;
+  border: none;
+  margin: 20px 0;
+  width: 100%;
+  background-color: #7f2fff;
+  padding: 20px;
+  border-radius: 10px;
+  color: #ffff;
+  font-weight: bold;
+  font-size: larger;
+}
+
+.title-secondary {
+  text-align: center;
+}
+
+p {
+  text-align: center;
+}
+
+.section {
+  background-color: #d0f5f0;
+  padding: 50px 10px 150px 10px;
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+}

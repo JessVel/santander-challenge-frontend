@@ -1,0 +1,43 @@
+.form-usuario {
+  /* background-color: rgb(255, 198, 124); */
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+}
+
+.reverse {
+  flex-direction: row-reverse;
+}
+
+.contenedor-form {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding: 3rem;
+  text-align: center;
+}
+
+label {
+  display: none;
+  text-align: center;
+}
+
+.campo-form input[type="password"],
+.campo-form input[type="user"],
+.campo-form input[type="text"],
+.campo-form input[type="email"] {
+  border: 1px solid #e1e1e1;
+  border-radius: 10px;
+  margin: 10px 0;
+  padding: 1rem;
+  width: 100%;
+  flex: 1;
+  outline: none;
+}
+
+.campo-form {
+  display: flex;
+}

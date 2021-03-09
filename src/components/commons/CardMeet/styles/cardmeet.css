@@ -1,0 +1,10 @@
+.tarea {
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--blanco);
+  padding: 0.5rem 2rem;
+  align-items: center;
+  margin-bottom: 1rem;
+  border-radius: 0.5rem;
+  transition: all 0.3s linear;
+}
