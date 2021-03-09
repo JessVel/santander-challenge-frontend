@@ -5,14 +5,14 @@ import AuthContext from '../../context/auth/authContext';
 import Swal from "sweetalert2";
 import "./styles/auth.css";
 
-const SingIn = props => {
+const SingIn = ({history}) => {
 
   const { showAlert, registerUser, authentication, message } = useContext(AuthContext);
 
   const handleChange = useEffect(() => {
     if (authentication) {
-      props.history.push("/home");
-      Swal.fire("Usuario creado con éxito!", "Muchas gracias por registrarte con nosotros", "success");
+      history.push("/home");
+      Swal.fire("User created successfully", "Thank you for choosing us!", "success");
     }
 
     if (message) {
@@ -22,7 +22,7 @@ const SingIn = props => {
         text: message.msg,
       });
     }
-  }, [message, authentication, props.history]);
+  }, [authentication]);
 
   // State para iniciar sesion
   const [usuario, setUsuario] = useState({

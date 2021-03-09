@@ -20,6 +20,7 @@ const AuthState = props => {
   const registerUser = async data => {
     try {
       const response = await connection.post("/api/user", data);
+      console.log(response)
 
       dispatch({
         type: REGISTER_SUCESS,

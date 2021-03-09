@@ -1,13 +1,15 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Beer from '../Animation/Beer/Beer'
 import AuthContext from '../../context/auth/authContext';
+import Swal from "sweetalert2";
 import "./styles/auth.css";
 
-const LogIn = props => {
+const LogIn = ({history}) => {
 
-  const { showAlert, logInUser } = useContext(AuthContext);
 
+  const { authentication, showAlert, logInUser, message } = useContext(AuthContext);
+  
   // State para iniciar sesion
   const [userValues, setUserValues] = useState({
     user: "",
@@ -16,6 +18,23 @@ const LogIn = props => {
 
   // Extraer datos de usuario
   const { user, password } = userValues;
+  useEffect(() => {
+    if (authentication) {
+      history.push("/home");
+      Swal.fire("Welcome 😄", `We missed you, ${user}!`, "success");
+    }
+    if (message) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: message.msg,
+      });
+    }
+    // eslint-disable-next-line
+  }, [authentication]);
+
+
+
 
   const onChange = e => {
     setUserValues({
