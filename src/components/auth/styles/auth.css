@@ -1,15 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;700;900&display=swap');
+h1{
+  margin: 0;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 900;
+}
+
 .form-usuario {
-  /* background-color: rgb(255, 198, 124); */
   height: 100vh;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  flex-direction: row;
+  flex-direction: column;
 }
 
-.reverse {
-  flex-direction: row-reverse;
-}
+
 
 .contenedor-form {
   width: 100%;
@@ -18,10 +22,15 @@
   flex-direction: column;
   padding: 3rem;
   text-align: center;
+  background-color: #d0f5f0;
+  height: 100%;
+  padding: 2rem 3rem;
+  border-top-left-radius: 3rem;
+  border-top-right-radius: 3rem;
 }
 
 label {
-  display: none;
+  visibility: hidden;
   text-align: center;
 }
 
@@ -31,13 +40,43 @@ label {
 .campo-form input[type="email"] {
   border: 1px solid #e1e1e1;
   border-radius: 10px;
-  margin: 10px 0;
+  /* margin: 10px 0; */
   padding: 1rem;
   width: 100%;
   flex: 1;
   outline: none;
 }
 
-.campo-form {
-  display: flex;
+
+.sombra-dark {
+  box-shadow: 0 6px 11px -8px rgb(0 0 0 / 90%);
+}
+
+.campo-form{
+  align-items: center;
+}
+
+@media (min-width: 768px){
+
+  h1{
+    margin-bottom: 2rem;
+  }
+
+  label{
+    visibility: visible;
+    flex: 0 0 100px;
+    font-weight: 700;
+  }
+
+  .campo-form{
+    align-items: center;
+}
+.contenedor-form{
+  padding: 5rem 10rem;
+  width: 50%;
+}
+.reverse {
+  flex-direction: row-reverse;
+}
+  
 }

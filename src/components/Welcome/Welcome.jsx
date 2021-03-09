@@ -9,11 +9,12 @@ const Welcome = ({ history }) => {
   return (
     <>
       <main className="container-flex">
-        <h1 className="title">Welcome!</h1>
+        <section className="section-anim">
         <Beer />
-        <section className="section">
+        </section>
+        <section className="section-start">
           <h3 className="title-secondary">Beer calendar</h3>
-          <p>Here you can see all your beer meetings</p>
+          <small>Here you can see all your beer meetings!</small>
 
           <button className="btn" onClick={handleOnClick}>
             Get started!

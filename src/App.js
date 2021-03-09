@@ -4,9 +4,12 @@ import SingIn from "./components/auth/SingIn";
 import Home from "./components/Home/Home";
 import Welcome from "./components/Welcome/Welcome";
 
+import AuthState from './context/auth/authState';
+
 function App() {
   const history = useHistory();
   return (
+    <AuthState>
     <Router>
       <Switch history={history}>
         <Route exact path="/" component={Welcome} />
@@ -15,6 +18,7 @@ function App() {
         <Route exact path="/home" component={Home} />
       </Switch>
     </Router>
+    </AuthState>
   );
 }
 
