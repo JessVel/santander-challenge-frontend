@@ -15,3 +15,8 @@ code {
   text-decoration: none;
   box-sizing: border-box;
 }
+
+.section-start,.contenedor-form{
+  background-color: #fff5d0;
+}
+

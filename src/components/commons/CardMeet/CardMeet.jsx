@@ -1,39 +1,64 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
+import meetContext from '../../../context/Meet/meetContext';
+import authContext from '../../../context/auth/authContext';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash, faEdit } from "@fortawesome/free-solid-svg-icons";
+import moment from 'moment';
+import './styles/cardmeet.css'
 
-const CardMeet = () => {
-  //confirmar asistencia
-  //   const changeAssistance = () => {
-  //     if (meet.estado) {
-  //       meet.estado = false;
-  //     } else {
-  //       meet.estado = true;
-  //     }
-  //     actualizarTarea(tarea);
-  //   };
+
+const CardMeet = ({meet}) => {
+
+ const { meets, deleteMeet, editMeet } = useContext(meetContext);
+ const { admin } = useContext(authContext);
+
+ let color;
+ let listColor = ['pink', 'blue', 'yellow', 'violet', 'orange' ]
+
+ const randomColor = () =>{
+  
+ color = listColor[Math.floor(Math.random() * listColor.length)]
+ }
+
+ randomColor()
+
+  // confirmar asistencia
+    const changeAssistance = (meet) => {
+      if (meet.asistance === true) {
+        meet.asistance = false;
+      } else {
+        meet.asistance = true;
+      }
+      editMeet(meet);
+    };
 
   return (
-    <li className="tarea sombra">
-      {/* <p>{tarea.nombre}</p> */}
-      <div className="estado">
-        {tarea.estado ? (
-          <button type="button" className="completo" onClick={() => cambiarEstado(tarea)}>
-            Completo
+    <>
+    <li className={`meet ${color} shadow`}>
+      <div>
+        {meet.asistance === true ? (
+          <button type="button" className="complete btn-assistance" onClick={() => changeAssistance(meet)}>
+            Attend
           </button>
         ) : (
-          <button type="button" className="incompleto" onClick={() => cambiarEstado(tarea)}>
-            Incompleto
+          <button type="button" className="incomplete btn-assistance" onClick={() => changeAssistance(meet)}>
+            No attend
           </button>
         )}
       </div>
-      <div className="acciones">
-        <button type="button" className="btn btn-primario" onClick={() => seleccionarTarea(tarea)}>
-          <FontAwesomeIcon icon={faEdit} />
-        </button>
-        <button type="button" className="btn btn-secundario" onClick={() => handleOnClick(tarea._id)}>
-          <FontAwesomeIcon icon={faTrash} />
-        </button>
+      <div className="actions">
+        <h3>{meet.name}</h3>
+        <small>{moment(meet.date).format("L")}</small>
+       {admin === 'T' ?
+       <div className="action-btn"> <button type="button" className="btn-edit" onClick={() => editMeet(meet)}>
+       <FontAwesomeIcon icon={faEdit} />
+     </button>
+     <button type="button" className="btn-delete" onClick={() => deleteMeet(meet._id)}>
+       <FontAwesomeIcon icon={faTrash} />
+     </button></div> : null }
       </div>
     </li>
+    </>
   );
 };
 

@@ -1,0 +1,34 @@
+.campo-date input[type="date"]{
+    border: none;
+    outline: none;
+    padding: 1rem;
+    border: 1px solid #e1e1e1;
+    border-radius: 10px;
+    width: 100%;
+}
+div input{
+    margin: 5px;
+}
+
+.form{
+    padding: 3rem;
+    background-color: #dbc5ff91;
+}
+
+.btn-cancel{
+    outline: none;
+    border: none;
+    appearance: none;
+    font-size: 25px;
+    padding: .3rem .7rem;
+    border-radius: 50%;
+    position: absolute;
+    top:-40px
+    
+}
+
+.btn-flex{
+    display: flex;
+    justify-content: flex-end;
+    position: relative;
+}

@@ -13,6 +13,7 @@ const AuthState = props => {
     user: null,
     message: null,
     cargando: true,
+    admin:null
   };
 
   const [state, dispatch] = useReducer(AuthReducer, initialState);
@@ -20,7 +21,6 @@ const AuthState = props => {
   const registerUser = async data => {
     try {
       const response = await connection.post("/api/user", data);
-      console.log(response)
 
       dispatch({
         type: REGISTER_SUCESS,
@@ -53,7 +53,7 @@ const AuthState = props => {
 
       dispatch({
         type: GET_USER,
-        payload: response.data.usuario,
+        payload: response.data,
       });
     } catch (error) {
       dispatch({
@@ -66,7 +66,6 @@ const AuthState = props => {
   const logInUser = async data => {
     try {
       const response = await connection.post("/api/auth", data);
-      console.log(data)
 
       dispatch({
         type: LOGIN_SUCCESS,
@@ -101,6 +100,7 @@ const AuthState = props => {
         user: state.user,
         message: state.message,
         cargando: state.cargando,
+        admin: state.admin,
         registerUser,
         logInUser,
         authenticUser,

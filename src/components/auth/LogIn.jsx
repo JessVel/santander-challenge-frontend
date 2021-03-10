@@ -18,6 +18,7 @@ const LogIn = ({history}) => {
 
   // Extraer datos de usuario
   const { user, password } = userValues;
+  
   useEffect(() => {
     if (authentication) {
       history.push("/home");

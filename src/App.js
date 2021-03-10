@@ -5,10 +5,14 @@ import Home from "./components/Home/Home";
 import Welcome from "./components/Welcome/Welcome";
 
 import AuthState from './context/auth/authState';
+import MeetState from './context/Meet/meetState'
+import FormState from './context/Form/formState'
 
 function App() {
   const history = useHistory();
   return (
+    <FormState>
+    <MeetState>
     <AuthState>
     <Router>
       <Switch history={history}>
@@ -19,6 +23,8 @@ function App() {
       </Switch>
     </Router>
     </AuthState>
+    </MeetState>
+    </FormState>
   );
 }
 

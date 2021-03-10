@@ -12,6 +12,16 @@ export default (state, action) => {
         user: action.payload,
         cargando: false,
       };
+      case GET_USER:
+      return {
+        ...state,
+        authentication: true,
+        user: action.payload,
+        cargando: false,
+        admin: action.payload.userData.is_admin
+        
+        
+      };
       default:
         return state;
     }
