@@ -11,7 +11,7 @@ const MeetState = props => {
 
   const [state, dispatch] = useReducer(MeetReducer, initialState);
 
-  const getMeet = async (email) => {
+  const getMeet = async () => {
     try {
       const response = await connection.get(`/api/meet`);
       dispatch({

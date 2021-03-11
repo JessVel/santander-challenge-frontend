@@ -1,13 +1,17 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import formContect from '../../../context/Form/formContext';
 import meetContext from '../../../context/Meet/meetContext';
+import orderContex from '../../../context/Order/orderContex';
+import axios from "axios";
+import moment from 'moment';
 import Swal from "sweetalert2";
 import './styles/form.css'
 
 const Form = () => {
 
     const { form, showForm, hideForm } = useContext(formContect);
-    const { createMeet } = useContext(meetContext)
+    const { createMeet, getMeet } = useContext(meetContext)
+    const { order, getOrder } = useContext(orderContex);
 
 
     const [meet, setMeet] = useState({
@@ -15,8 +19,38 @@ const Form = () => {
         date:"",
         assistants:[],
       });
+      
+
+    const [ result, setResult ] = useState([]);
+    const [ loading, setLoading ] = useState(false);
+    // const [ temp, setTemp ] = useState([])
+
+    
+useEffect(() =>{
+
+  const apiConsult = () =>{
+
+    const URL = 'http://dataservice.accuweather.com/forecasts/v1/daily/5day/7894?apikey=0r8c47b5euYAxf9aiSHEVzfxYoZaAceI';
+    
+   
+     
+     const response = axios.get(URL).then(response =>{
+      setLoading(true);
+      setResult(response.data.DailyForecasts);
+      console.log(response.data.DailyForecasts)
+      console.log(response.data.DailyForecasts[0].Temperature)
+    }).catch(error =>{console.log(error)})
+  
+   }
+   setLoading(false)
+   apiConsult()
+}, [])
+
+
 
    const { name, date, assistants } = meet;
+
+  //  getOrder()
 
     const onChange = (e) => {
         setMeet({
@@ -24,6 +58,8 @@ const Form = () => {
           [e.target.name]: e.target.value,
         });
       };
+
+
 
       const handleSubmit = (e) =>{
           e.preventDefault();
@@ -43,10 +79,6 @@ const Form = () => {
           hideForm()
       }
 
-    // const handleSubmit = (e) => {
-    //     e.preventDefault;
-    //     console.log('submit')
-    // }
 
     return ( 
         <div className="form">
@@ -59,18 +91,22 @@ const Form = () => {
           </div>
 
           <div className="campo-date">
-            <input type="date" className="input-date" placeholder="Meet date..." name="date" value={date} onChange={onChange} />
+            <select type="date" className="input-date" placeholder="Meet date..." name="date" value={date} onChange={onChange} >
+
+            <option value="">-- Select a date--</option>
+           
+           { result.map(item => <option type="date"  >{moment(item.Date).format("L")} </option>) }
+            </select>
           </div>
           <div className="campo-form">
             <input type="text" className="input-date" placeholder="Assistants's e-mail..." name="assistants" value={assistants} onChange={onChange} />
           </div>
-
-          <div className="campo-form">
-            
-          </div>
+         { date  ?
+           <div>El día {date} haran </div> : null
+         }
   
           <div className="contenedor-input">
-            <input type="submit" className="btn btn-primario btn-submit btn-block" value="Create" />
+            <input type="submit" className="btn btn-primario btn-submit btn-block" value="Create"/>
           </div>
          
          

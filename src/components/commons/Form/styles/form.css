@@ -1,4 +1,4 @@
-.campo-date input[type="date"]{
+.campo-date input,select[type="date"]{
     border: none;
     outline: none;
     padding: 1rem;
@@ -6,7 +6,7 @@
     border-radius: 10px;
     width: 100%;
 }
-div input{
+div input,select{
     margin: 5px;
 }
 
@@ -31,4 +31,21 @@ div input{
     display: flex;
     justify-content: flex-end;
     position: relative;
+}
+
+.dates-flex{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    grid-gap:3px;
+    justify-items: center;
+}
+
+.date{
+    background-color: #ffff;
+    width: 70%;
+    margin: 5px;
+    padding: 1rem .5rem;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-top: 5px solid red;
 }

@@ -5,12 +5,14 @@ import Home from "./components/Home/Home";
 import Welcome from "./components/Welcome/Welcome";
 
 import AuthState from './context/auth/authState';
-import MeetState from './context/Meet/meetState'
-import FormState from './context/Form/formState'
+import MeetState from './context/Meet/meetState';
+import FormState from './context/Form/formState';
+import OrderState from './context/Order/orderState';
 
 function App() {
   const history = useHistory();
   return (
+    <OrderState>
     <FormState>
     <MeetState>
     <AuthState>
@@ -25,6 +27,7 @@ function App() {
     </AuthState>
     </MeetState>
     </FormState>
+    </OrderState>
   );
 }
 

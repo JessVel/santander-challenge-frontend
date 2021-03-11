@@ -15,3 +15,6 @@ export const CREATE_MEET = "CREATE_MEET"
 //form
 export const SHOW_FORM = "SHOW_FORM"
 export const HIDE_FORM = "HIDE_FORM"
+
+//orders
+export const GET_ORDER = 'GET_ORDER'
