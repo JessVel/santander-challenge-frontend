@@ -8,10 +8,12 @@ import AuthState from './context/auth/authState';
 import MeetState from './context/Meet/meetState';
 import FormState from './context/Form/formState';
 import OrderState from './context/Order/orderState';
+import WeatherApiState from './context/WeatherApi/weatherapiState'
 
 function App() {
   const history = useHistory();
   return (
+    <WeatherApiState>
     <OrderState>
     <FormState>
     <MeetState>
@@ -28,6 +30,7 @@ function App() {
     </MeetState>
     </FormState>
     </OrderState>
+    </WeatherApiState>
   );
 }
 

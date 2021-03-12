@@ -18,3 +18,8 @@ export const HIDE_FORM = "HIDE_FORM"
 
 //orders
 export const GET_ORDER = 'GET_ORDER'
+
+//weather api
+export const GET_TEMP = "GET_TEMP";
+export const DATE_TEMP = 'DATE_TEMP'
+export const DATE_ERROR = 'DATE_ERROR'

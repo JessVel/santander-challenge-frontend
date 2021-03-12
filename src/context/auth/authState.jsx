@@ -21,7 +21,7 @@ const AuthState = props => {
   const registerUser = async data => {
     try {
       const response = await connection.post("/api/user", data);
-
+      console.log(response.data)
       dispatch({
         type: REGISTER_SUCESS,
         payload: response.data,
@@ -34,7 +34,6 @@ const AuthState = props => {
         msg: error.response.data.msg,
         categoria: "alerta-error",
       };
-
       dispatch({
         type: REGISTER_ERROR,
         payload: alert,

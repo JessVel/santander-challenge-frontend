@@ -2,8 +2,9 @@ import React, { useState, useContext, useEffect } from 'react';
 import formContect from '../../../context/Form/formContext';
 import meetContext from '../../../context/Meet/meetContext';
 import orderContex from '../../../context/Order/orderContex';
-import axios from "axios";
+import weatherapiContext from '../../../context/WeatherApi/weatherapiContext'
 import moment from 'moment';
+import Spinner from '../../commons/Spinner/Spinner'
 import Swal from "sweetalert2";
 import './styles/form.css'
 
@@ -12,46 +13,34 @@ const Form = () => {
     const { form, showForm, hideForm } = useContext(formContect);
     const { createMeet, getMeet } = useContext(meetContext)
     const { order, getOrder } = useContext(orderContex);
+    const { tempForecast, tempDay, getTemp, getTempbyDay} = useContext(weatherapiContext)
 
 
     const [meet, setMeet] = useState({
         name: "",
         date:"",
+        temp:'',
         assistants:[],
       });
       
-
-    const [ result, setResult ] = useState([]);
     const [ loading, setLoading ] = useState(false);
-    // const [ temp, setTemp ] = useState([])
 
     
 useEffect(() =>{
 
-  const apiConsult = () =>{
+  getTemp()
+  getTempbyDay(date, tempForecast)
 
-    const URL = 'http://dataservice.accuweather.com/forecasts/v1/daily/5day/7894?apikey=0r8c47b5euYAxf9aiSHEVzfxYoZaAceI';
-    
-   
-     
-     const response = axios.get(URL).then(response =>{
-      setLoading(true);
-      setResult(response.data.DailyForecasts);
-      console.log(response.data.DailyForecasts)
-      console.log(response.data.DailyForecasts[0].Temperature)
-    }).catch(error =>{console.log(error)})
-  
-   }
-   setLoading(false)
-   apiConsult()
+  if(temp === '' && !tempDay)return;
+  setMeet({
+    ...meet,
+    temp: tempDay
+  })
+
 }, [])
 
-
-
-   const { name, date, assistants } = meet;
-
-  //  getOrder()
-
+   const { name, date, assistants,temp } = meet;
+  
     const onChange = (e) => {
         setMeet({
           ...meet,
@@ -79,7 +68,6 @@ useEffect(() =>{
           hideForm()
       }
 
-
     return ( 
         <div className="form">
         <form onSubmit={handleSubmit}>
@@ -95,21 +83,24 @@ useEffect(() =>{
 
             <option value="">-- Select a date--</option>
            
-           { result.map(item => <option type="date"  >{moment(item.Date).format("L")} </option>) }
+           { tempForecast ?
+           
+           
+           tempForecast.map(item => <option type="date"  >{moment(item.Date).format("MMM Do YY")} </option>) : 
+           <Spinner />
+           }
             </select>
           </div>
           <div className="campo-form">
             <input type="text" className="input-date" placeholder="Assistants's e-mail..." name="assistants" value={assistants} onChange={onChange} />
           </div>
          { date  ?
-           <div>El día {date} haran </div> : null
+           <div>On <span>{date}</span> the temperature will be <span name="temp" onChange={onChange} value={tempDay} >{tempDay}</span></div> : null
          }
   
           <div className="contenedor-input">
             <input type="submit" className="btn btn-primario btn-submit btn-block" value="Create"/>
           </div>
-         
-         
         </form>
       </div>
      );

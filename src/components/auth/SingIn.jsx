@@ -9,7 +9,7 @@ const SingIn = ({history}) => {
 
   const { showAlert, registerUser, authentication, message } = useContext(AuthContext);
 
-  const handleChange = useEffect(() => {
+  useEffect(() => {
     if (authentication) {
       history.push("/home");
       Swal.fire("User created successfully", "Thank you for choosing us!", "success");
@@ -62,7 +62,7 @@ const SingIn = ({history}) => {
         return;
       }
 
-      registerUser({ user, email, password });
+      registerUser( {user, email, password} );
     };
 
   return (
@@ -79,7 +79,7 @@ const SingIn = ({history}) => {
             </div>
 
             <div className="campo-form">
-              <label htmlFor="password">E-mail</label>
+              <label htmlFor="email">E-mail</label>
               <input className="input-focus" type="email" id="email" name="email" placeholder="Enter your e-mail" value={email} onChange={onChange} />
             </div>
 
@@ -94,11 +94,11 @@ const SingIn = ({history}) => {
             </div>
 
             <div className="campo-form">
-              <input type="submit" className="btn btn-primario btn-block" value="Sing in" onClick={handleChange} />
+              <input type="submit" className="btn btn-primario btn-block" value="Sing in"/>
             </div>
           </form>
 
-          <Link to={"/"} className="enlace-cuenta">
+          <Link to={"/login"} className="enlace-cuenta">
             Get back
           </Link>
         </div>
