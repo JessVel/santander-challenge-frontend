@@ -20,6 +20,7 @@ export default (state, action) => {
         tempDay: null,
         tempForecast: null,
       };
+
     default:
       return state;
   }

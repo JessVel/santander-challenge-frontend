@@ -2,11 +2,12 @@ import React, { useReducer } from "react";
 import MeetContext from "./meetContext";
 import MeetReducer from "./meetReducer";
 import connection from "../../config/connection";
-import { EDIT_MEET, GET_MEET, DELETE_MEET, CREATE_MEET } from "../../types";
+import { EDIT_MEET, GET_MEET, DELETE_MEET, CREATE_MEET, SELECTED_MEET } from "../../types";
 
 const MeetState = props => {
   const initialState = {
     meets: [],
+    meetId: null,
   };
 
   const [state, dispatch] = useReducer(MeetReducer, initialState);
@@ -59,6 +60,13 @@ const MeetState = props => {
     }
   };
 
+  const selectedMeet = id => {
+    dispatch({
+      type: SELECTED_MEET,
+      payload: id,
+    });
+  };
+
   return (
     <MeetContext.Provider
       value={{
@@ -67,6 +75,7 @@ const MeetState = props => {
         createMeet,
         deleteMeet,
         editMeet,
+        selectedMeet,
       }}
     >
       {props.children}

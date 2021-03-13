@@ -7,7 +7,7 @@ import formContect from "../../../context/Form/formContext";
 import "./styles/listmeet.css";
 
 const ListMeet = () => {
-  const { meets, getMeet } = useContext(meetContext);
+  const { meets, getMeet, selectedMeet } = useContext(meetContext);
   const { admin } = useContext(authContext);
   const { form, showForm } = useContext(formContect);
 
@@ -15,9 +15,13 @@ const ListMeet = () => {
     getMeet();
   }, []);
 
+  const selected = id => {
+    selectedMeet(id);
+  };
+
   return (
     <>
-      <div className="container-flex">
+      <div className="meet-flex">
         <h2 className="meets-title">My meets</h2>
         {admin === "T" && !form ? (
           <button
@@ -34,7 +38,21 @@ const ListMeet = () => {
         {form ? <Form /> : null}
       </div>
       <div className="list-container">
-        <ul className="list-meet">{meets.length === null ? <li style={{ textAlign: "center" }}>There's no meetings</li> : meets.map(meet => <CardMeet key={meet._id} meet={meet} />)}</ul>
+        <ul className="list-meet">
+          {meets.length === null ? (
+            <li style={{ textAlign: "center" }}>There's no meetings</li>
+          ) : (
+            meets.map(meet => (
+              <CardMeet
+                key={meet._id}
+                meet={meet}
+                onClick={() => {
+                  selected(meet._id);
+                }}
+              />
+            ))
+          )}
+        </ul>
       </div>
     </>
   );

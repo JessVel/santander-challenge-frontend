@@ -1,48 +1,53 @@
-.list-container{
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    padding: 2rem;
+.list-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 2rem;
 }
 
-.list-meet{
-    width: 100%;
+.list-meet {
+  width: 100%;
 }
 
-.meets-title{
-    margin: 30px;
-    font-weight: 900;
-    font-size: 40px;
+.meets-title {
+  margin: 30px;
+  font-weight: 900;
+  font-size: 40px;
 }
 
-.create-meet{
-    outline: none;
-    border: none;
-    appearance: none;
-    width: 60%;
-    margin: 0 auto;
-    background-color: #7f2fff;
-    padding: 20px;
-    border-radius: 10px;
-    color: #ffff;
-    font-weight: bold;
-    font-size: larger;
+.create-meet {
+  outline: none;
+  border: none;
+  appearance: none;
+  width: 60%;
+  margin: 0 auto;
+  background-color: #7f2fff;
+  padding: 20px;
+  border-radius: 10px;
+  color: #ffff;
+  font-weight: bold;
+  font-size: larger;
 }
 
+.meet-flex {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
 
-@media (min-width: 768px){
+@media (min-width: 768px) {
+  .list-container {
+    padding: 5rem;
+  }
+  .list-meet {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 10px;
+    grid-auto-rows: minmax(100px, auto);
+  }
 
-    .list-container{
-        padding: 5rem;
-    }
-    .list-meet{
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        grid-gap: 10px;
-        grid-auto-rows: minmax(100px, auto);
-    }
-
-    .create-meet{
-        width: 30%;
-    }
+  .create-meet {
+    width: 30%;
+  }
 }

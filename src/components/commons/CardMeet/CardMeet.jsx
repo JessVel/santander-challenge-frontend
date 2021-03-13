@@ -3,11 +3,12 @@ import meetContext from "../../../context/Meet/meetContext";
 import authContext from "../../../context/auth/authContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash, faEdit } from "@fortawesome/free-solid-svg-icons";
+import Swal from "sweetalert2";
 import moment from "moment";
 import "./styles/cardmeet.css";
 
 const CardMeet = ({ meet }) => {
-  const { meets, deleteMeet, editMeet } = useContext(meetContext);
+  const { meets, deleteMeet, editMeet, meetId, getMeet } = useContext(meetContext);
   const { admin } = useContext(authContext);
 
   let color;
@@ -19,6 +20,10 @@ const CardMeet = ({ meet }) => {
 
   randomColor();
 
+  useEffect(() => {
+    getMeet();
+  }, []);
+
   // confirmar asistencia
   const changeAssistance = meet => {
     if (meet.asistance === true) {
@@ -27,6 +32,36 @@ const CardMeet = ({ meet }) => {
       meet.asistance = true;
     }
     editMeet(meet);
+  };
+
+  const swalWithBootstrapButtons = Swal.mixin({
+    customClass: {
+      confirmButton: "btn btn-success",
+      cancelButton: "btn btn-danger",
+    },
+    buttonsStyling: false,
+  });
+
+  const handleDelete = () => {
+    swalWithBootstrapButtons
+      .fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Yes, delete!",
+        cancelButtonText: "No, cancel!",
+        reverseButtons: true,
+      })
+      .then(result => {
+        if (result.isConfirmed) {
+          deleteMeet(meet._id);
+          swalWithBootstrapButtons.fire("Deleted!", "The meeting has been deleted.", "success");
+          return;
+        } else if (result.dismiss === Swal.DismissReason.cancel) {
+          swalWithBootstrapButtons.fire("Cancel!", "Uff, that was close!", "error");
+        }
+      });
   };
 
   return (
@@ -52,7 +87,7 @@ const CardMeet = ({ meet }) => {
               <button type="button" className="btn-edit" onClick={() => editMeet(meet)}>
                 <FontAwesomeIcon icon={faEdit} />
               </button>
-              <button type="button" className="btn-delete" onClick={() => deleteMeet(meet._id)}>
+              <button type="button" className="btn-delete" onClick={handleDelete}>
                 <FontAwesomeIcon icon={faTrash} />
               </button>
             </div>

@@ -25,6 +25,7 @@ const Form = () => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    getMeet();
     getTemp();
     getTempbyDay(date, tempForecast);
 

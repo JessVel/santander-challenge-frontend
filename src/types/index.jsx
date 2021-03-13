@@ -11,6 +11,7 @@ export const DELETE_MEET = "DELETE_MEET";
 export const EDIT_MEET = "EDIT_MEET";
 export const GET_MEET = "GET_MEET";
 export const CREATE_MEET = "CREATE_MEET";
+export const SELECTED_MEET = "SELECTED_MEET";
 
 //form
 export const SHOW_FORM = "SHOW_FORM";
