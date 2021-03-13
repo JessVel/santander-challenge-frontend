@@ -1,19 +1,21 @@
 import React, { useReducer } from "react";
 import BeerOrderContex from "./beerOrderContext";
 import beerOrderReducer from "./beerOrderReducer";
-import { GET_ORDER, CREATE_ORDER } from "../../types";
+import { GET_ORDER, CREATE_ORDER, GET_ERROR } from "../../types";
 
-import apiConnection from "../../config/apiConnection";
+import connection from "../../config/connection";
 
 const BeerOrderState = props => {
   const initialState = {
-    order: [],
+    beerTotal: null,
+    beerOrder: [],
   };
 
   const [state, dispatch] = useReducer(beerOrderReducer, initialState);
 
   const getOrder = async data => {
-    const response = await apiConnection.get("/api/order", data);
+    const response = await connection.post("/api/order", data);
+    console.log(response);
 
     try {
       dispatch({
@@ -22,11 +24,15 @@ const BeerOrderState = props => {
       });
     } catch (error) {
       console.log(error);
+      dispatch({
+        type: GET_ERROR,
+        payload: error.response.data.msg,
+      });
     }
   };
 
   const createOrder = async data => {
-    const response = await apiConnection.post("/api/order", data);
+    const response = await connection.post("/api/order", data);
     try {
       dispatch({
         type: CREATE_ORDER,
@@ -39,7 +45,8 @@ const BeerOrderState = props => {
   return (
     <BeerOrderContex.Provider
       value={{
-        order: state.order,
+        beerOrder: state.beerOrder,
+        beerTotal: state.beerTotal,
         getOrder,
         createOrder,
       }}

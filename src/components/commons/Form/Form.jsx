@@ -7,6 +7,7 @@ import Spinner from "../../commons/Spinner/Spinner";
 import calculateCelcius from "../../helpers/helper";
 import Swal from "sweetalert2";
 import "./styles/form.css";
+import BeerOrder from "../../commons/BeerOrder/BeerOrder";
 
 const Form = () => {
   const { form, showForm, hideForm } = useContext(formContect);
@@ -62,6 +63,7 @@ const Form = () => {
     hideForm();
   };
 
+  console.log([assistants].length);
   return (
     <div className="form">
       <form onSubmit={handleSubmit}>
@@ -99,7 +101,7 @@ const Form = () => {
             </span>
           </div>
         ) : null}
-
+        {temp ? <BeerOrder assistants={assistants} temp={temp} /> : null}
         <div className="contenedor-input">
           <input type="submit" className="btn btn-primario btn-submit btn-block" value="Create" />
         </div>

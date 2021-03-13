@@ -20,6 +20,7 @@ export const HIDE_FORM = "HIDE_FORM";
 //orders
 export const GET_ORDER = "GET_ODER";
 export const CREATE_ORDER = "CREATE_ORDER";
+export const GET_ERROR = "GET_ERROR";
 
 //weather api
 export const GET_TEMP = "GET_TEMP";
