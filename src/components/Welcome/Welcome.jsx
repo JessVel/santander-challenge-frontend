@@ -10,7 +10,7 @@ const Welcome = ({ history }) => {
     <>
       <main className="container-flex">
         <section className="section-anim">
-        <Beer />
+          <Beer />
         </section>
         <section className="section-start">
           <h3 className="title-secondary">Beer calendar</h3>

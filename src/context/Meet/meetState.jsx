@@ -1,7 +1,7 @@
 import React, { useReducer } from "react";
-import MeetContext from './meetContext';
-import MeetReducer from './meetReducer'
-import connection from '../../config/connection'
+import MeetContext from "./meetContext";
+import MeetReducer from "./meetReducer";
+import connection from "../../config/connection";
 import { EDIT_MEET, GET_MEET, DELETE_MEET, CREATE_MEET } from "../../types";
 
 const MeetState = props => {
@@ -23,19 +23,19 @@ const MeetState = props => {
     }
   };
 
-  const createMeet = async (meet) => {
+  const createMeet = async meet => {
     try {
-      await connection.post("/api/meet", meet);
+      const response = await connection.post("/api/meet", meet);
       dispatch({
         type: CREATE_MEET,
-        payload: meet,
+        payload: response.data,
       });
     } catch (error) {
       console.log(error);
     }
   };
 
-  const deleteMeet = async (id) => {
+  const deleteMeet = async id => {
     try {
       await connection.delete(`/api/meet/${id}`);
       dispatch({
@@ -66,7 +66,7 @@ const MeetState = props => {
         getMeet,
         createMeet,
         deleteMeet,
-        editMeet
+        editMeet,
       }}
     >
       {props.children}

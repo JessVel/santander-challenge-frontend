@@ -4,7 +4,7 @@ import AuthReducer from "./authReducer";
 import { REGISTER_SUCESS, REGISTER_ERROR, GET_USER, LOGIN_SUCCESS, LOGIN_ERROR, LOG_OUT } from "../../types/index";
 
 import tokenAuth from "../../config/tokenAuth";
-import connection from '../../config/connection';
+import connection from "../../config/connection";
 
 const AuthState = props => {
   const initialState = {
@@ -13,7 +13,7 @@ const AuthState = props => {
     user: null,
     message: null,
     cargando: true,
-    admin:null
+    admin: null,
   };
 
   const [state, dispatch] = useReducer(AuthReducer, initialState);
@@ -21,7 +21,7 @@ const AuthState = props => {
   const registerUser = async data => {
     try {
       const response = await connection.post("/api/user", data);
-      console.log(response.data)
+      console.log(response.data);
       dispatch({
         type: REGISTER_SUCESS,
         payload: response.data,

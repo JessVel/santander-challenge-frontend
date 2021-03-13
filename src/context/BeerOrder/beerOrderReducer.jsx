@@ -1,14 +1,14 @@
-import { SHOW_FORM, HIDE_FORM } from "../../types";
+import { GET_ORDER, CREATE_ORDER } from "../../types";
 
 export default (state, action) => {
   switch (action.type) {
-    case SHOW_FORM:
+    case GET_ORDER:
       return {
         ...state,
         form: true,
       };
 
-    case HIDE_FORM:
+    case CREATE_ORDER:
       return {
         ...state,
         form: false,

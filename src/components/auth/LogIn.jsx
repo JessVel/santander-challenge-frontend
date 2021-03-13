@@ -1,15 +1,13 @@
 import React, { useState, useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
-import Beer from '../Animation/Beer/Beer'
-import AuthContext from '../../context/auth/authContext';
+import Beer from "../Animation/Beer/Beer";
+import AuthContext from "../../context/auth/authContext";
 import Swal from "sweetalert2";
 import "./styles/auth.css";
 
-const LogIn = ({history}) => {
-
-
+const LogIn = ({ history }) => {
   const { authentication, showAlert, logInUser, message } = useContext(AuthContext);
-  
+
   // State para iniciar sesion
   const [userValues, setUserValues] = useState({
     user: "",
@@ -18,7 +16,7 @@ const LogIn = ({history}) => {
 
   // Extraer datos de usuario
   const { user, password } = userValues;
-  
+
   useEffect(() => {
     if (authentication) {
       history.push("/home");
@@ -34,9 +32,6 @@ const LogIn = ({history}) => {
     // eslint-disable-next-line
   }, [authentication]);
 
-
-
-
   const onChange = e => {
     setUserValues({
       ...userValues,
@@ -45,16 +40,16 @@ const LogIn = ({history}) => {
   };
 
   // iniciar sesion
-    const onSubmit = e => {
-      e.preventDefault();
+  const onSubmit = e => {
+    e.preventDefault();
 
-      if (user.trim() === "" || password.trim() === "") {
-        showAlert("Todos los campos son obligatorios", "alerta-error");
-        return;
-      }
+    if (user.trim() === "" || password.trim() === "") {
+      showAlert("Todos los campos son obligatorios", "alerta-error");
+      return;
+    }
 
-      logInUser({ user, password });
-    };
+    logInUser({ user, password });
+  };
 
   return (
     <div className="form-usuario">

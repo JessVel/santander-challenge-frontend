@@ -1,12 +1,11 @@
 import React, { useState, useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
-import Beer from '../Animation/Beer/Beer'
-import AuthContext from '../../context/auth/authContext';
+import Beer from "../Animation/Beer/Beer";
+import AuthContext from "../../context/auth/authContext";
 import Swal from "sweetalert2";
 import "./styles/auth.css";
 
-const SingIn = ({history}) => {
-
+const SingIn = ({ history }) => {
   const { showAlert, registerUser, authentication, message } = useContext(AuthContext);
 
   useEffect(() => {
@@ -44,34 +43,34 @@ const SingIn = ({history}) => {
   };
 
   // iniciar sesion
-    const onSubmit = e => {
-      e.preventDefault();
+  const onSubmit = e => {
+    e.preventDefault();
 
-      if (user.trim() === "" || email.trim() === "" || password.trim() === "" || confirm.trim() === "") {
-        showAlert("Todos los campos son obligatios", "alerta-error");
-        return;
-      }
+    if (user.trim() === "" || email.trim() === "" || password.trim() === "" || confirm.trim() === "") {
+      showAlert("Todos los campos son obligatios", "alerta-error");
+      return;
+    }
 
-      if (password.length < 6) {
-        showAlert("La contraseña debe tener al menos 6 caracteres", "alerta-error");
-        return;
-      }
+    if (password.length < 6) {
+      showAlert("La contraseña debe tener al menos 6 caracteres", "alerta-error");
+      return;
+    }
 
-      if (password.length === 6 && confirm.length === 6 && password !== confirm) {
-        showAlert("Las contraseñas deben ser iguales", "alerta-error");
-        return;
-      }
+    if (password.length === 6 && confirm.length === 6 && password !== confirm) {
+      showAlert("Las contraseñas deben ser iguales", "alerta-error");
+      return;
+    }
 
-      registerUser( {user, email, password} );
-    };
+    registerUser({ user, email, password });
+  };
 
   return (
     <>
       <div className="form-usuario reverse">
-      <Beer />
+        <Beer />
         <div className="contenedor-form sombra-dark">
           <h1 className="singin-titulo">Get account</h1>
-          
+
           <form onSubmit={onSubmit}>
             <div className="campo-form">
               <label htmlFor="user">User</label>
@@ -94,7 +93,7 @@ const SingIn = ({history}) => {
             </div>
 
             <div className="campo-form">
-              <input type="submit" className="btn btn-primario btn-block" value="Sing in"/>
+              <input type="submit" className="btn btn-primario btn-block" value="Sing in" />
             </div>
           </form>
 

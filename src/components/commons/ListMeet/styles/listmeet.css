@@ -28,9 +28,21 @@
     font-weight: bold;
     font-size: larger;
 }
+
+
 @media (min-width: 768px){
 
     .list-container{
         padding: 5rem;
+    }
+    .list-meet{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 10px;
+        grid-auto-rows: minmax(100px, auto);
+    }
+
+    .create-meet{
+        width: 30%;
     }
 }

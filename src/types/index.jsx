@@ -9,17 +9,18 @@ export const LOG_OUT = "LOG_OUT";
 //meets
 export const DELETE_MEET = "DELETE_MEET";
 export const EDIT_MEET = "EDIT_MEET";
-export const GET_MEET = 'GET_MEET';
-export const CREATE_MEET = "CREATE_MEET"
+export const GET_MEET = "GET_MEET";
+export const CREATE_MEET = "CREATE_MEET";
 
 //form
-export const SHOW_FORM = "SHOW_FORM"
-export const HIDE_FORM = "HIDE_FORM"
+export const SHOW_FORM = "SHOW_FORM";
+export const HIDE_FORM = "HIDE_FORM";
 
 //orders
-export const GET_ORDER = 'GET_ORDER'
+export const GET_ORDER = "GET_ODER";
+export const CREATE_ORDER = "CREATE_ORDER";
 
 //weather api
 export const GET_TEMP = "GET_TEMP";
-export const DATE_TEMP = 'DATE_TEMP'
-export const DATE_ERROR = 'DATE_ERROR'
+export const DATE_TEMP = "DATE_TEMP";
+export const DATE_ERROR = "DATE_ERROR";

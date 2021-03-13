@@ -74,9 +74,15 @@ label {
 .contenedor-form{
   padding: 5rem 10rem;
   width: 50%;
+  border-radius: 0;
 }
+
+
+.form-usuario{
+  flex-direction: row;
+}
+
 .reverse {
   flex-direction: row-reverse;
 }
-  
 }
