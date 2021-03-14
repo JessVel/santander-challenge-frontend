@@ -1,11 +1,19 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import Beer from "../Animation/Beer/Beer";
+
+import authContext from "../../context/auth/authContext";
 import "./styles/welcome.css";
 
 const Welcome = ({ history }) => {
   function handleOnClick() {
     history.push("/login");
   }
+
+  const { user, admin, authenticUser } = useContext(authContext);
+
+  useEffect(() => {
+    authenticUser();
+  }, [user, admin]);
   return (
     <>
       <main className="container-flex">

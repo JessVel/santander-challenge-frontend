@@ -10,7 +10,7 @@ const PrivateRoute = ({ component: Component, ...props }) => {
     // eslint-disable-next-line
   }, []);
 
-  return <Route {...props} render={props => (!authentication && !loading ? <Redirect to="/" /> : <Component {...props} />)} />;
+  return <Route {...props} render={props => (!authentication ? <Redirect to="/" /> : <Component {...props} />)} />;
 };
 
 export default PrivateRoute;
