@@ -14,7 +14,7 @@ const BeerOrder = ({ assistants, temp, name, date }) => {
   useEffect(() => {
     setLoading(true);
 
-    if (assistants && temp) {
+    if (assistants.length > 0 && temp) {
       setData({
         person: assistants.split(",").length,
         temp: temp,
