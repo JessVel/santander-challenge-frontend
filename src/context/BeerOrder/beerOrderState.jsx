@@ -15,13 +15,13 @@ const BeerOrderState = props => {
 
   const getOrder = async data => {
     const response = await connection.post("/api/order", data);
-    console.log(response);
 
     try {
       dispatch({
         type: GET_ORDER,
         payload: response.data,
       });
+      return;
     } catch (error) {
       console.log(error);
       dispatch({

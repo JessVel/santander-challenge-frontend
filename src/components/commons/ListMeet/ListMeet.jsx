@@ -1,18 +1,25 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import CardMeet from "../CardMeet/CardMeet";
 import Form from "../Form/Form";
 import meetContext from "../../../context/Meet/meetContext";
 import authContext from "../../../context/auth/authContext";
 import formContect from "../../../context/Form/formContext";
+import UfoAnimation from "../../Animation/Ufo/Ufo";
 import "./styles/listmeet.css";
 
 const ListMeet = () => {
   const { meets, getMeet, selectedMeet } = useContext(meetContext);
-  const { admin } = useContext(authContext);
+  const { admin, authenticUser, user } = useContext(authContext);
   const { form, showForm } = useContext(formContect);
 
+  const [loading, setLoading] = useState(false);
+
   useEffect(() => {
+    setLoading(true);
+    authenticUser();
     getMeet();
+
+    setLoading(false);
   }, []);
 
   const selected = id => {
@@ -22,7 +29,8 @@ const ListMeet = () => {
   return (
     <>
       <div className="meet-flex">
-        <h2 className="meets-title">My meets</h2>
+        <h4 className="meets-title">My beer meetings!</h4>
+        {/* {user ? <span className="user">Hello, {user.userData.user}!👋🤩</span> : null} */}
         {admin === "T" && !form ? (
           <button
             type="button"
@@ -38,11 +46,11 @@ const ListMeet = () => {
         {form ? <Form /> : null}
       </div>
       <div className="list-container">
-        <ul className="list-meet">
-          {meets.length === null ? (
-            <li style={{ textAlign: "center" }}>There's no meetings</li>
-          ) : (
-            meets.map(meet => (
+        {meets.length === 0 ? (
+          <h3 className="list-title">There's no meetings...</h3>
+        ) : (
+          <ul className="list-meet">
+            {meets.map(meet => (
               <CardMeet
                 key={meet._id}
                 meet={meet}
@@ -50,9 +58,16 @@ const ListMeet = () => {
                   selected(meet._id);
                 }}
               />
-            ))
-          )}
-        </ul>
+            ))}
+          </ul>
+        )}
+
+        {meets.length === 0 ? (
+          <section className="section-flex">
+            {" "}
+            <UfoAnimation />
+          </section>
+        ) : null}
       </div>
     </>
   );

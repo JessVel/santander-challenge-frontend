@@ -26,10 +26,7 @@ const BeerOrder = ({ assistants, temp, name, date }) => {
     getOrder(data);
     setLoading(false);
     return;
-  }, [data]);
-
-  console.log(beerTotal);
-  console.log(data, temp, tempDay);
+  }, [assistants]);
 
   return (
     <>

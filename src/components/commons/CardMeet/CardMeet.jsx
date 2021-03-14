@@ -11,15 +11,6 @@ const CardMeet = ({ meet }) => {
   const { meets, deleteMeet, editMeet, meetId, getMeet } = useContext(meetContext);
   const { admin } = useContext(authContext);
 
-  let color;
-  let listColor = ["pink", "blue", "yellow", "violet", "orange"];
-
-  const randomColor = () => {
-    color = listColor[Math.floor(Math.random() * listColor.length)];
-  };
-
-  randomColor();
-
   useEffect(() => {
     getMeet();
   }, []);
@@ -66,7 +57,7 @@ const CardMeet = ({ meet }) => {
 
   return (
     <>
-      <li className={`meet ${color} shadow`}>
+      <li className="meet shadow">
         <div className="actions">
           <h3>{meet.name}</h3>
           <small>{moment(meet.date).format("L")}</small>
