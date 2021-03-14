@@ -4,7 +4,7 @@ import ListMeet from "../commons/ListMeet/ListMeet";
 import "./styles/home.css";
 
 const Home = () => {
-  const { admin, authenticUser } = useContext(AuthContext);
+  const { authenticUser } = useContext(AuthContext);
 
   useEffect(() => {
     authenticUser();

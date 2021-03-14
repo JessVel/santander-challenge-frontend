@@ -7,7 +7,6 @@ import "./styles/beerorder.css";
 
 const BeerOrder = ({ assistants, temp, name, date }) => {
   const { beerTotal, getOrder } = useContext(beerOrderContext);
-  const { tempDay } = useContext(weatherApiContext);
 
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState({});
