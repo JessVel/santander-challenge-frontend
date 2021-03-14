@@ -12,7 +12,7 @@ const AuthState = props => {
     authentication: null,
     user: null,
     message: null,
-    cargando: true,
+    loading: true,
     admin: null,
   };
 
@@ -85,7 +85,7 @@ const AuthState = props => {
     }
   };
 
-  const cerrarSesion = () => {
+  const logOut = () => {
     dispatch({
       type: LOG_OUT,
     });
@@ -98,12 +98,12 @@ const AuthState = props => {
         authentication: state.authentication,
         user: state.user,
         message: state.message,
-        cargando: state.cargando,
+        loading: state.loading,
         admin: state.admin,
         registerUser,
         logInUser,
         authenticUser,
-        cerrarSesion,
+        logOut,
       }}
     >
       {props.children}

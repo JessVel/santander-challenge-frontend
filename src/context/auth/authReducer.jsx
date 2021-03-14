@@ -23,7 +23,7 @@ export default (state, action) => {
       };
     case REGISTER_ERROR:
     case LOGIN_ERROR:
-      console.log(action.payload);
+    case LOG_OUT:
       localStorage.removeItem("token");
       return {
         ...state,
