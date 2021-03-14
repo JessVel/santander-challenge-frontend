@@ -62,8 +62,6 @@ const Form = () => {
     });
     hideForm();
   };
-
-  console.log([assistants].length);
   return (
     <div className="form">
       <form onSubmit={handleSubmit}>
@@ -101,7 +99,7 @@ const Form = () => {
             </span>
           </div>
         ) : null}
-        {temp ? <BeerOrder assistants={assistants} temp={temp} /> : null}
+        {temp ? <BeerOrder assistants={assistants} temp={temp} date={date} name={name} /> : null}
         <div className="contenedor-input">
           <input type="submit" className="btn btn-primario btn-submit btn-block" value="Create" />
         </div>

@@ -1,50 +1,52 @@
 import React, { useState, useContext, useEffect } from "react";
 import beerOrderContext from "../../../context/BeerOrder/beerOrderContext";
-import meetContext from "../../../context/Meet/meetContext";
+import weatherApiContext from "../../../context/WeatherApi/weatherapiContext";
 import Spinner from "../Spinner/Spinner";
 import beer from "../../../assets/beer.png";
 import "./styles/beerorder.css";
-import formContext from "../../../context/Form/formContext";
 
-const BeerOrder = ({ assistants, temp }) => {
+const BeerOrder = ({ assistants, temp, name, date }) => {
   const { beerTotal, getOrder } = useContext(beerOrderContext);
-  const { date, tempDay } = useContext(meetContext);
+  const { tempDay } = useContext(weatherApiContext);
 
   const [loading, setLoading] = useState(false);
-
-  let data;
+  const [data, setData] = useState({});
 
   useEffect(() => {
     setLoading(true);
 
     if (assistants && temp) {
-      data = {
+      setData({
         person: assistants.split(",").length,
         temp: temp,
-      };
+      });
+    } else {
+      return;
     }
-
-    if (data === null) return;
     getOrder(data);
     setLoading(false);
-  }, [date, tempDay, assistants, temp]);
+    return;
+  }, [data]);
 
   console.log(beerTotal);
+  console.log(data, temp, tempDay);
 
   return (
     <>
-      <div>
-        <h1>You're gonna need...</h1>
-        {beerTotal ? (
-          <div className="beer-total">
-            <h3>{beerTotal.order}order of </h3>
+      {loading === false ? (
+        <div>
+          <h1>You're gonna need...</h1>
+          {beerTotal ? (
+            <div className="beer-total">
+              <h3>{beerTotal.order}order of </h3>
 
-            <img src={beer} />
-          </div>
-        ) : (
-          <Spinner />
-        )}
-      </div>
+              <img src={beer} />
+            </div>
+          ) : (
+            <Spinner />
+          )}
+        </div>
+      ) : null}
     </>
   );
 };

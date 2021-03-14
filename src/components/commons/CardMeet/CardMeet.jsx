@@ -67,20 +67,23 @@ const CardMeet = ({ meet }) => {
   return (
     <>
       <li className={`meet ${color} shadow`}>
-        <div>
-          {meet.asistance === true ? (
-            <button type="button" className="complete btn-assistance" onClick={() => changeAssistance(meet)}>
-              Attend
-            </button>
-          ) : (
-            <button type="button" className="incomplete btn-assistance" onClick={() => changeAssistance(meet)}>
-              No attend
-            </button>
-          )}
-        </div>
         <div className="actions">
           <h3>{meet.name}</h3>
           <small>{moment(meet.date).format("L")}</small>
+          <h3>{meet.temp} C°</h3>
+        </div>
+        <section className="flex-section">
+          <div>
+            {meet.asistance === true ? (
+              <button type="button" className="complete btn-assistance" onClick={() => changeAssistance(meet)}>
+                Attend
+              </button>
+            ) : (
+              <button type="button" className="incomplete btn-assistance" onClick={() => changeAssistance(meet)}>
+                No attend
+              </button>
+            )}
+          </div>
           {admin === "T" ? (
             <div className="action-btn">
               {" "}
@@ -92,7 +95,7 @@ const CardMeet = ({ meet }) => {
               </button>
             </div>
           ) : null}
-        </div>
+        </section>
       </li>
     </>
   );
