@@ -1,5 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import authContext from "../../context/auth/authContext";
+import { useTranslation } from "react-i18next";
 
 const LogOut = () => {
   const { logOut, user, authenticUser } = useContext(authContext);
@@ -8,10 +9,11 @@ const LogOut = () => {
   //   authenticUser();
   // }, []);
 
+  const { t } = useTranslation();
   return (
     <footer className="log-out">
       <button className="btn-logout" onClick={() => logOut()}>
-        Log out
+        {t("logout.button")}
       </button>
     </footer>
   );

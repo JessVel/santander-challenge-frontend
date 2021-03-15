@@ -5,21 +5,19 @@ import meetContext from "../../../context/Meet/meetContext";
 import authContext from "../../../context/auth/authContext";
 import formContect from "../../../context/Form/formContext";
 import UfoAnimation from "../../Animation/Ufo/Ufo";
+import { useTranslation } from "react-i18next";
 import "./styles/listmeet.css";
 
 const ListMeet = () => {
   const { meets, getMeet, selectedMeet } = useContext(meetContext);
-  const { admin, authenticUser, user } = useContext(authContext);
+  const { admin, authenticUser } = useContext(authContext);
   const { form, showForm } = useContext(formContect);
 
-  const [loading, setLoading] = useState(false);
+  const { t } = useTranslation();
 
   useEffect(() => {
-    setLoading(true);
     authenticUser();
     getMeet();
-
-    setLoading(false);
   }, []);
 
   const selected = id => {
@@ -29,8 +27,7 @@ const ListMeet = () => {
   return (
     <>
       <div className="meet-flex">
-        <h4 className="meets-title">My beer meetings!</h4>
-        {/* {user ? <span className="user">Hello, {user.userData.user}!👋🤩</span> : null} */}
+        <h4 className="meets-title">{t("listmeet.title")}</h4>
         {admin === "T" && !form ? (
           <button
             type="button"
@@ -39,7 +36,7 @@ const ListMeet = () => {
               showForm();
             }}
           >
-            Create meet
+            {t("listmeet.create")}
           </button>
         ) : null}
 
@@ -47,7 +44,7 @@ const ListMeet = () => {
       </div>
       <div className="list-container">
         {meets.length === 0 ? (
-          <h3 className="list-title">There's no meetings...</h3>
+          <h3 className="list-title">{t("listmeet.nomeets")}</h3>
         ) : (
           <ul className="list-meet">
             {meets.map(meet => (

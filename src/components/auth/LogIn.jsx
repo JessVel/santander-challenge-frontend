@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Beer from "../Animation/Beer/Beer";
 import AuthContext from "../../context/auth/authContext";
 import Swal from "sweetalert2";
+import { useTranslation } from "react-i18next";
 import "./styles/auth.css";
 
 const LogIn = ({ history }) => {
@@ -17,10 +18,12 @@ const LogIn = ({ history }) => {
   // Extraer datos de usuario
   const { user, password } = userValues;
 
+  const { t } = useTranslation();
+
   useEffect(() => {
     if (authentication) {
       history.push("/home");
-      Swal.fire("Welcome 😄", `We missed you, ${user}!`, "success");
+      Swal.fire(`${t("login.swal.welcome")}`, `${t("login.miss.you")} ${user}!`, "success");
     }
     if (message) {
       Swal.fire({
@@ -55,24 +58,24 @@ const LogIn = ({ history }) => {
     <div className="form-usuario">
       <Beer />
       <div className="contenedor-form sombra-dark">
-        <h1>Log in</h1>
+        <h1>{t("login.title")}</h1>
         <form onSubmit={onSubmit}>
           <div className="campo-form">
-            <label htmlFor="user">User</label>
+            <label htmlFor="user">{t("user.label")}</label>
             <input className="input-focus" type="user" id="user" name="user" placeholder="Enter your user" value={user} onChange={onChange} />
           </div>
 
           <div className="campo-form">
-            <label htmlFor="password">Password</label>
+            <label htmlFor="password">{t("password.label")}</label>
             <input className="input-focus" type="password" id="password" name="password" placeholder="Enter your password" value={password} onChange={onChange} />
           </div>
           <div className="campo-form">
             <input type="submit" className="btn btn-primario btn-block" value="Log in" />
           </div>
         </form>
-        <small>Don't have an account?</small>
+        <small>{t("login.small")}</small>
         <Link to={"/singin"} className="enlace-cuenta">
-          Get account
+          {t("login.get.account")}
         </Link>
       </div>
     </div>

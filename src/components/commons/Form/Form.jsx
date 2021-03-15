@@ -2,15 +2,16 @@ import React, { useState, useContext, useEffect } from "react";
 import formContect from "../../../context/Form/formContext";
 import meetContext from "../../../context/Meet/meetContext";
 import weatherapiContext from "../../../context/WeatherApi/weatherapiContext";
+import { useTranslation } from "react-i18next";
 import moment from "moment";
 import Spinner from "../../commons/Spinner/Spinner";
 import calculateCelcius from "../../helpers/helper";
-import Swal from "sweetalert2";
+// import Swal from "sweetalert2";
 import "./styles/form.css";
 import BeerOrder from "../../commons/BeerOrder/BeerOrder";
 
 const Form = () => {
-  const { form, showForm, hideForm } = useContext(formContect);
+  const { hideForm } = useContext(formContect);
   const { createMeet, getMeet } = useContext(meetContext);
   const { tempForecast, tempDay, getTemp, getTempbyDay } = useContext(weatherapiContext);
 
@@ -23,7 +24,7 @@ const Form = () => {
 
   const { name, date, assistants, temp } = meet;
 
-  const [loading, setLoading] = useState(false);
+  const { t } = useTranslation();
 
   useEffect(() => {
     getMeet();
@@ -78,12 +79,12 @@ const Form = () => {
           </button>
         </div>
         <div className="campo-form">
-          <input type="text" className="input-text" placeholder="Meet name..." name="name" value={name} onChange={onChange} />
+          <input type="text" className="input-text" placeholder={t("form.meetname")} name="name" value={name} onChange={onChange} />
         </div>
 
         <div className="campo-date">
-          <select type="date" className="input-date" placeholder="Meet date..." name="date" value={date} onChange={onChange}>
-            <option value="">-- Select a date--</option>
+          <select type="date" className="input-date" placeholder={t("form.meetdate")} name="date" value={date} onChange={onChange}>
+            <option value="">{t("form.select.date")}</option>
 
             {tempForecast ? tempForecast.map(item => <option type="date">{moment(item.Date).format("L")} </option>) : <Spinner />}
           </select>
@@ -93,7 +94,7 @@ const Form = () => {
         </div>
         {date ? (
           <div>
-            On <span>{date}</span> the temperature will be{" "}
+            {t("form.on")} <span>{date}</span> {t("form.temperature")}
             <span name="temp" onChange={onChange} value={calculateCelcius(tempDay)}>
               {calculateCelcius(tempDay)}°C
             </span>
@@ -101,7 +102,7 @@ const Form = () => {
         ) : null}
         {temp ? <BeerOrder assistants={assistants} temp={temp} date={date} name={name} /> : null}
         <div className="contenedor-input">
-          <input type="submit" className="btn btn-primario btn-submit btn-block" value="Create" />
+          <input type="submit" className="btn btn-primario btn-submit btn-block" value={t("form.create")} />
         </div>
       </form>
     </div>

@@ -3,13 +3,16 @@ import meetContext from "../../../context/Meet/meetContext";
 import authContext from "../../../context/auth/authContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash, faEdit } from "@fortawesome/free-solid-svg-icons";
+import { useTranslation } from "react-i18next";
 import Swal from "sweetalert2";
 import moment from "moment";
 import "./styles/cardmeet.css";
 
 const CardMeet = ({ meet }) => {
-  const { meets, deleteMeet, editMeet, meetId, getMeet } = useContext(meetContext);
+  const { deleteMeet, editMeet, getMeet } = useContext(meetContext);
   const { admin } = useContext(authContext);
+
+  const { t } = useTranslation();
 
   useEffect(() => {
     getMeet();
@@ -36,21 +39,21 @@ const CardMeet = ({ meet }) => {
   const handleDelete = () => {
     swalWithBootstrapButtons
       .fire({
-        title: "Are you sure?",
-        text: "You won't be able to revert this!",
+        title: ` ${t("cardmeet.swal.title")}`,
+        text: `${t("cardmeet.swal.revert")}`,
         icon: "warning",
         showCancelButton: true,
-        confirmButtonText: "Yes, delete!",
-        cancelButtonText: "No, cancel!",
+        confirmButtonText: `${t("swal.delete")}`,
+        cancelButtonText: `${t("swal.cancel")}`,
         reverseButtons: true,
       })
       .then(result => {
         if (result.isConfirmed) {
           deleteMeet(meet._id);
-          swalWithBootstrapButtons.fire("Deleted!", "The meeting has been deleted.", "success");
+          swalWithBootstrapButtons.fire(`${t("swal.deleted")}`, `${t("swal.meet.deleted")}`, "success");
           return;
         } else if (result.dismiss === Swal.DismissReason.cancel) {
-          swalWithBootstrapButtons.fire("Cancel!", "Uff, that was close!", "error");
+          swalWithBootstrapButtons.fire(`${t("swal.canceled")}`, `${t("swal.close")}`, "error");
         }
       });
   };
@@ -67,11 +70,11 @@ const CardMeet = ({ meet }) => {
           <div>
             {meet.asistance === true ? (
               <button type="button" className="complete btn-assistance" onClick={() => changeAssistance(meet)}>
-                Attend
+                {t("cardmeet.attend")}
               </button>
             ) : (
               <button type="button" className="incomplete btn-assistance" onClick={() => changeAssistance(meet)}>
-                No attend
+                {t("cardmeet.noattend")}
               </button>
             )}
           </div>

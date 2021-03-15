@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import Beer from "../Animation/Beer/Beer";
-
-import authContext from "../../context/auth/authContext";
+import { useTranslation } from "react-i18next";
+// import authContext from "../../context/auth/authContext";
 import "./styles/welcome.css";
 
 const Welcome = ({ history }) => {
@@ -9,6 +9,7 @@ const Welcome = ({ history }) => {
     history.push("/login");
   }
 
+  const { t } = useTranslation();
   // const { user, admin, logOut, token, authenticUser } = useContext(authContext);
 
   // useEffect(() => {
@@ -21,11 +22,11 @@ const Welcome = ({ history }) => {
           <Beer />
         </section>
         <section className="section-start">
-          <h3 className="title-secondary">Beer calendar</h3>
-          <small>Here you can see all your beer meetings!</small>
+          <h3 className="title-secondary">{t("welcome.title")}</h3>
+          <small>{t("welcome.small")}</small>
 
           <button className="btn" onClick={handleOnClick}>
-            Get started!
+            {t("welcome.start")}
           </button>
         </section>
       </main>

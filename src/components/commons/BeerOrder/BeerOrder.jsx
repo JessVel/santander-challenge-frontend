@@ -1,15 +1,18 @@
 import React, { useState, useContext, useEffect } from "react";
 import beerOrderContext from "../../../context/BeerOrder/beerOrderContext";
-import weatherApiContext from "../../../context/WeatherApi/weatherapiContext";
+// import weatherApiContext from "../../../context/WeatherApi/weatherapiContext";
+import { useTranslation } from "react-i18next";
 import Spinner from "../Spinner/Spinner";
 import beer from "../../../assets/beer.png";
 import "./styles/beerorder.css";
 
-const BeerOrder = ({ assistants, temp, name, date }) => {
+const BeerOrder = ({ assistants, temp }) => {
   const { beerTotal, getOrder } = useContext(beerOrderContext);
 
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState({});
+
+  const { t } = useTranslation();
 
   useEffect(() => {
     setLoading(true);
@@ -31,10 +34,12 @@ const BeerOrder = ({ assistants, temp, name, date }) => {
     <>
       {loading === false ? (
         <div>
-          <h1>You're gonna need...</h1>
+          <h1>{t("beer.order")}</h1>
           {beerTotal ? (
             <div className="beer-total">
-              <h3>{beerTotal.order}order of </h3>
+              <h3>
+                {beerTotal.order} {t("beer.orderof")}{" "}
+              </h3>
 
               <img src={beer} />
             </div>

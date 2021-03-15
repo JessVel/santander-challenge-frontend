@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Beer from "../Animation/Beer/Beer";
 import AuthContext from "../../context/auth/authContext";
+import { useTranslation } from "react-i18next";
 import Swal from "sweetalert2";
 import "./styles/auth.css";
 
@@ -22,6 +23,8 @@ const SingIn = ({ history }) => {
       });
     }
   }, [authentication]);
+
+  const { t } = useTranslation();
 
   // State para iniciar sesion
   const [usuario, setUsuario] = useState({
@@ -69,36 +72,36 @@ const SingIn = ({ history }) => {
       <div className="form-usuario reverse">
         <Beer />
         <div className="contenedor-form sombra-dark">
-          <h1 className="singin-titulo">Get account</h1>
+          <h1 className="singin-titulo">{t("singin.get.account")}</h1>
 
           <form onSubmit={onSubmit}>
             <div className="campo-form">
-              <label htmlFor="user">User</label>
-              <input className="input-focus" type="text" id="user" name="user" placeholder="Enter your user" value={user} onChange={onChange} />
+              <label htmlFor="user">{t("user.label")}</label>
+              <input className="input-focus" type="text" id="user" name="user" placeholder={t("singin.enter.user")} value={user} onChange={onChange} />
             </div>
 
             <div className="campo-form">
-              <label htmlFor="email">E-mail</label>
-              <input className="input-focus" type="email" id="email" name="email" placeholder="Enter your e-mail" value={email} onChange={onChange} />
+              <label htmlFor="email">{t("email.label")}</label>
+              <input className="input-focus" type="email" id="email" name="email" placeholder={t("singin.enter.email")} value={email} onChange={onChange} />
             </div>
 
             <div className="campo-form">
-              <label htmlFor="password">Password</label>
-              <input className="input-focus" type="password" id="password" name="password" placeholder="Enter your password" value={password} onChange={onChange} />
+              <label htmlFor="password">{t("password.label")}</label>
+              <input className="input-focus" type="password" id="password" name="password" placeholder={t("singin.enter.password")} value={password} onChange={onChange} />
             </div>
 
             <div className="campo-form">
-              <label htmlFor="confirmar">Confirm password</label>
-              <input className="input-focus" type="password" id="confirmar" name="confirm" placeholder="Repeat your password" value={confirm} onChange={onChange} />
+              <label htmlFor="confirmar">{t("confirm.password.label")}</label>
+              <input className="input-focus" type="password" id="confirmar" name="confirm" placeholder={t("singin.confirm.password")} value={confirm} onChange={onChange} />
             </div>
 
             <div className="campo-form">
-              <input type="submit" className="btn btn-primario btn-block" value="Sing in" />
+              <input type="submit" className="btn btn-primario btn-block" value={t("singin.input")} />
             </div>
           </form>
 
           <Link to={"/login"} className="enlace-cuenta">
-            Get back
+            {t("singin.back")}
           </Link>
         </div>
       </div>
