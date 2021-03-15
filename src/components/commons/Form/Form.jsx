@@ -6,6 +6,7 @@ import { useTranslation } from "react-i18next";
 import moment from "moment";
 import Spinner from "../../commons/Spinner/Spinner";
 import calculateCelcius from "../../helpers/helper";
+import shortid from "shortid";
 // import Swal from "sweetalert2";
 import "./styles/form.css";
 import BeerOrder from "../../commons/BeerOrder/BeerOrder";
@@ -86,7 +87,15 @@ const Form = () => {
           <select type="date" className="input-date" placeholder={t("form.meetdate")} name="date" value={date} onChange={onChange}>
             <option value="">{t("form.select.date")}</option>
 
-            {tempForecast ? tempForecast.map(item => <option type="date">{moment(item.Date).format("L")} </option>) : <Spinner />}
+            {tempForecast ? (
+              tempForecast.map(item => (
+                <option key={shortid.generate()} type="date">
+                  {moment(item.Date).format("L")}{" "}
+                </option>
+              ))
+            ) : (
+              <Spinner />
+            )}
           </select>
         </div>
         <div className="campo-form">
