@@ -5,13 +5,6 @@ import LogOut from "../auth/LogOut";
 import "./styles/home.css";
 
 const Home = () => {
-  const { authenticUser } = useContext(AuthContext);
-
-  useEffect(() => {
-    authenticUser();
-    // eslint-disable-next-line
-  }, []);
-
   return (
     <>
       <ListMeet />

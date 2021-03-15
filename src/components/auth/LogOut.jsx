@@ -1,8 +1,13 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import authContext from "../../context/auth/authContext";
 
 const LogOut = () => {
-  const { logOut } = useContext(authContext);
+  const { logOut, user, authenticUser } = useContext(authContext);
+
+  // useEffect(() => {
+  //   authenticUser();
+  // }, []);
+
   return (
     <footer className="log-out">
       <button className="btn-logout" onClick={() => logOut()}>

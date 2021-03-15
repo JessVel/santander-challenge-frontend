@@ -9,11 +9,11 @@ const Welcome = ({ history }) => {
     history.push("/login");
   }
 
-  const { user, admin, authenticUser } = useContext(authContext);
+  // const { user, admin, logOut, token, authenticUser } = useContext(authContext);
 
-  useEffect(() => {
-    authenticUser();
-  }, [user, admin]);
+  // useEffect(() => {
+  //   authenticUser();
+  // }, []);
   return (
     <>
       <main className="container-flex">

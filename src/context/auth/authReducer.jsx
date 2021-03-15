@@ -11,19 +11,18 @@ export default (state, action) => {
         authentication: true,
         message: null,
         user: action.payload,
-        cargando: false,
+        loading: false,
       };
     case GET_USER:
       return {
         ...state,
         authentication: true,
         user: action.payload,
-        cargando: false,
+        loading: false,
         admin: action.payload.userData.is_admin,
       };
     case REGISTER_ERROR:
     case LOGIN_ERROR:
-    case LOG_OUT:
       localStorage.removeItem("token");
       return {
         ...state,
@@ -31,7 +30,19 @@ export default (state, action) => {
         user: null,
         admin: null,
         authentication: null,
-        cargando: false,
+        loading: false,
+      };
+
+    case LOG_OUT:
+      console.log("cerrando sesion");
+      localStorage.removeItem("token");
+      return {
+        ...state,
+        token: null,
+        user: null,
+        admin: null,
+        authentication: null,
+        loading: false,
       };
     default:
       return state;
