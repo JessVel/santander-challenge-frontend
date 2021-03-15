@@ -47,7 +47,11 @@ const LogIn = ({ history }) => {
     e.preventDefault();
 
     if (user.trim() === "" || password.trim() === "") {
-      showAlert("Todos los campos son obligatorios", "alerta-error");
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: `${t("login.error")}`,
+      });
       return;
     }
 

@@ -50,17 +50,29 @@ const SingIn = ({ history }) => {
     e.preventDefault();
 
     if (user.trim() === "" || email.trim() === "" || password.trim() === "" || confirm.trim() === "") {
-      showAlert("Todos los campos son obligatios", "alerta-error");
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: `${t("login.error")}`,
+      });
       return;
     }
 
     if (password.length < 6) {
-      showAlert("La contraseña debe tener al menos 6 caracteres", "alerta-error");
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: `${t("login.error.password")}`,
+      });
       return;
     }
 
     if (password.length === 6 && confirm.length === 6 && password !== confirm) {
-      showAlert("Las contraseñas deben ser iguales", "alerta-error");
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: `${t("login.error.confirm")}`,
+      });
       return;
     }
 
