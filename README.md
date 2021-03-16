@@ -1,5 +1,5 @@
-### Admin user
-user: jess.vel
+# Admin user
+user: jess.vel\
 password: 111111
 
 # Getting Started with Create React App
