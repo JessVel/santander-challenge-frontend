@@ -1,6 +1,11 @@
+# Demo 🚀
+https://beer-challenge-frontend.netlify.app/
+
 # Admin user
 user: jess.vel\
 password: 111111
+
+# For regular user, create account
 
 # Getting Started with Create React App
 
